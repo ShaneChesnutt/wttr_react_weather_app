@@ -1,24 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import {
+  Box,
+  CircularProgress,
+  createTheme,
+  CssBaseline,
+  ThemeProvider,
+} from "@mui/material";
+import { Container } from "@mui/system";
+import Navbar from "./components/Navbar";
+import CurrentConditions from "./components/CurrentConditions";
+import Forecast from "./components/Forecast";
+import useWeather from "./hooks/useWeather";
 
 function App() {
+  const [search, setSearch] = useState("");
+  const theme = createTheme();
+
+  const { isLoading, forecast, location, currentWeather } = useWeather(search);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Box sx={{ flexGrow: 1 }}>
+        <CssBaseline />
+        <Navbar
+          theme={theme}
+          location={location}
+          search={search}
+          setSearch={setSearch}
+        />
+        {isLoading ? (
+          <Container
+            component="main"
+            maxWidth="lg"
+            sx={{
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <CircularProgress />
+          </Container>
+        ) : (
+          <Container component="main" maxWidth="lg" sx={{ mt: 10, mb: 4 }}>
+            <CurrentConditions weather={currentWeather} />
+            <Forecast forecast={forecast} />
+          </Container>
+        )}
+      </Box>
+    </ThemeProvider>
   );
 }
 

@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -35,4 +37,108 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+  background-color: #333333;
+}
+
+#app-navbar {
+  background-color: #666666;
+  height: 5vh;
+  width: 100wh;
+  border: 2px solid #777777;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.25rem;
+}
+
+#search-bar {
+  display: flex;
+  flex-grow: 1;
+}
+
+#search-bar input {
+  flex-basis: 80%;
+}
+
+#current-location {
+  margin-left: 2em;
+}
+
+#current-location p {
+  margin: 0;
+}
+
+#main-content {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #aaaaaa;
+  height: 94vh;
+  padding: 0.25em;
+}
+
+#current-weather {
+  background-color: #777777;
+  flex-basis: 100%;
+  border: 2px groove black;
+}
+
+#forecast {
+  flex-basis: 100%;
+  background-color: #888888;
+  padding: 2em;
+}
+
+#forecast-days {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.forecast-day {
+  flex-basis: 100%;
+  background-color: #eeeeee;
+  border: 2px solid black;
+}
+
+.forecast-day:not(:first-child) {
+  margin-top: 0.5em;
+}
+
+.forecast-day span {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+}
+
+.forecast-day-hourly {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.hourly-forecast {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  padding: 1em;
+}
+
+.wi-icon {
+  position: relative;
+  display: flex;
+  padding: 24px 6px;
+  align-items: center;
+  flex-flow: column;
+  justify-content: center;
+  background: hsla(var(--gray-0));
+  border-radius: 6px;
+  box-shadow: var(--shadow-2);
+}
+
+div.wi-icon {
+  height: 10em;
+  width: 10em;
 }
